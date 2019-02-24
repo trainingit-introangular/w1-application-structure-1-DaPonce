@@ -25,14 +25,14 @@ Práctica para el sprint de la primera semana, correspondiente a los temas **0-H
 
 ## Tareas
 
-- [ ] create **Application** with routing
-- [ ] create **CoreModule** for layout
-- [ ] create **LayoutComponent** _exported_
-- [ ] create **HeaderComponent**
-- [ ] create **MainComponent**
-- [ ] create **FooterComponent**
-- [ ] create **SharedModule** for export components
-- [ ] create **TagValueComponent** _exported_
+- [x] create **Application** with routing
+- [x] create **CoreModule** for layout
+- [x] create **LayoutComponent** _exported_
+- [x] create **HeaderComponent**
+- [x] create **MainComponent**
+- [x] create **FooterComponent**
+- [x] create **SharedModule** for export components
+- [x] create **TagValueComponent** _exported_
 
 ## Recursos
 
