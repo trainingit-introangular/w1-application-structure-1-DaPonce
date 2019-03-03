@@ -1,0 +1,18 @@
+<h3>
+  New project
+</h3>
+
+<form>
+  <fieldset>
+    <section>
+      <label for="name">Name</label>
+      <input name="name"
+             type="text"
+             [(ngModel)]="project.name"
+             placeholder="project name" />
+    </section>
+  </fieldset>
+  <input value="Save" type="submit" class="primary"  (click)="saveProject(project)"/>
+  <input value="Reset" type="reset" class="secondary"  (click)="resetForm()"/>
+  <input value="Cancel" type="button" class="inverse"  (click)="cancel()"/>
+</form>
