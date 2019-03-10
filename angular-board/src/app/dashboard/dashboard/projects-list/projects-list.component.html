@@ -1,0 +1,14 @@
+
+
+<!-- <app-filter-projects-form (search)="onSearch($event)"></app-filter-projects-form> -->
+
+<!-- <app-projects-list [projects] ="projects" -->
+  <!-- (delete)="onDelete($event)"> -->
+
+
+<app-filter-projects-form
+  [projects] ="projects"
+  (search)="onSearch($event)"
+  (delete)="onDelete($event)">
+</app-filter-projects-form>
+

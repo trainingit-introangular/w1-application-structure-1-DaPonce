@@ -1,0 +1,16 @@
+<h3>
+  Project number {{ id }}:
+  {{ originalName }}
+</h3>
+
+<form>
+  <fieldset>
+    <legend>Edit project</legend>
+    <section>
+      <label for="name">Name</label>
+      <input name="name" type="text" [(ngModel)]="newName" placeholder="hola" />
+    </section>
+  </fieldset>
+  <input value="Edit" type="submit" class="primary" (click)="update.emit(newName)" />
+  <input value="Cancel" type="reset" class="inverse" (click)="cancel.emit(true)" />
+</form>
