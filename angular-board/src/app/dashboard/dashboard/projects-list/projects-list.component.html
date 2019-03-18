@@ -7,7 +7,7 @@
 
 
 <app-filter-projects-form
-  [projects] ="projects"
+  [projects$] = "projects$"
   (search)="onSearch($event)"
   (delete)="onDelete($event)">
 </app-filter-projects-form>

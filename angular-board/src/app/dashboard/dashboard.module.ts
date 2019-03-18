@@ -10,6 +10,7 @@ import { NewProjectFormComponent } from './dashboard/new-project/new-project-for
 import { EditorProjectComponent } from './dashboard/editor-project/editor-project.component';
 import { NewProjectComponent } from './dashboard/new-project/new-project.component';
 import { FilterProjectsFormComponent } from './dashboard/projects-list/filter-projects-form/filter-projects-form.component';
+import { ProjectsService } from '../projects.service';
 
 @NgModule({
   declarations: [FilterProjectsFormComponent, DashboardComponent, ProjectsListComponent,
@@ -18,6 +19,9 @@ import { FilterProjectsFormComponent } from './dashboard/projects-list/filter-pr
     CommonModule,
     DashboardRoutingModule,
     FormsModule
+  ],
+  providers: [
+    ProjectsService
   ]
 })
 export class DashboardModule { }
