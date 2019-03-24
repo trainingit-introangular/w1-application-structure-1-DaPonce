@@ -42,15 +42,7 @@ export class ProjectsService {
     return this.httpClient.delete(this.API_URL + '/' + id);
   }
 
-  public updateProject(id: number, newName: string) {
-    environment.projects.filter(p => p.id == id)[0].name = newName;
+  public updateProject(project: Project) {
+    return this.httpClient.put(this.API_URL + '/' + project._id, project);
   }
-
-  // private transformData(currentProjects) {
-  //   const current: Project[] = currentProjects.map(item => ({
-  //     id: item.id,
-  //     name: item.name
-  //   }));
-  //   return current;
-  // }
 }

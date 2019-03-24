@@ -11,6 +11,8 @@ import { EditorProjectComponent } from './dashboard/editor-project/editor-projec
 import { NewProjectComponent } from './dashboard/new-project/new-project.component';
 import { FilterProjectsFormComponent } from './dashboard/projects-list/filter-projects-form/filter-projects-form.component';
 import { ProjectsService } from '../projects.service';
+import { ProjectInterceptorService } from '../project-interceptor.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
   declarations: [FilterProjectsFormComponent, DashboardComponent, ProjectsListComponent,

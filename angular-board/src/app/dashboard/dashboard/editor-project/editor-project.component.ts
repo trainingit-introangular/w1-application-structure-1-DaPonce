@@ -24,8 +24,13 @@ export class EditorProjectComponent implements OnInit {
     });
   }
 
-  public onUpdate(name: string) {
-    // this.projectService.updateProject(this.project._id, name);
+  public onUpdate(newName: string) {
+    let p: Project;
+    p = {
+      _id: this.project._id,
+      name: newName
+    }
+    this.projectService.updateProject(p).subscribe();
     this.router.navigate(['dashboard']);
   }
 

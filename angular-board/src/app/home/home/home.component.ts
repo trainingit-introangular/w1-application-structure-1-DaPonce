@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { ProjectsService } from 'src/app/projects.service';
 
 @Component({
   selector: 'app-home',
@@ -10,11 +11,12 @@ export class HomeComponent implements OnInit {
 
   public numProjects: number;
 
-  constructor() { }
+  constructor(private projectService: ProjectsService) { }
 
   ngOnInit() {
-    const projects = environment.projects;
-    this.numProjects = projects.length;
+    this.projectService.getProjects$().subscribe(p => {
+    this.numProjects = p.length;
+    });
   }
 
 }

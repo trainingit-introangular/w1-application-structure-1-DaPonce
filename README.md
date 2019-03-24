@@ -1,22 +1,22 @@
 # W1-Application-structure
-Práctica para el sprint de la cuarta semana
+Práctica para el sprint de la quinta semana
 
 ## Objetivos
 
-- Uso de llamadas HTTP
+- Uso de llamadas HTTP y formularios reactivos
 
 ## Tareas
 
-[x] import HttpClientModule
+[ ] refactor forms using ReactiveForms
 
-[x] Make ProjectsService dependant on HttpClient
+[x] use an interceptor to audit urls called by http
 
-[x] use this [public projects API]('https://api-base.herokuapp.com/api/pub/projects')
+[x] use a store to notify messages to user
 
-[x] **post** new project
+[x] send a message to the store for every url requested
 
-[x] **get** list of projects
+[x] show the last message in the footer of the application
 
 ## Recursos
 
-> Recomendación: Seguir los guiones de las lecciones 6 y 7.
+> Recomendación: Seguir los guiones de las lecciones 7 y 8.
