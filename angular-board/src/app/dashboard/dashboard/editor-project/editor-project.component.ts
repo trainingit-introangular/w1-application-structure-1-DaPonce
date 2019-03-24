@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProjectsService } from 'src/app/projects.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Project } from '../../models/project.model';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-editor-project',
@@ -17,11 +18,14 @@ export class EditorProjectComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.project = this.projectService.getProjectById(this.activatedRoute.snapshot.params.id);
+    this.projectService.getProjectById$(this.activatedRoute.snapshot.params.id).subscribe(p => {
+      this.project = p;
+      console.log(p);
+    });
   }
 
   public onUpdate(name: string) {
-    this.projectService.updateProject(this.project.id, name);
+    // this.projectService.updateProject(this.project._id, name);
     this.router.navigate(['dashboard']);
   }
 

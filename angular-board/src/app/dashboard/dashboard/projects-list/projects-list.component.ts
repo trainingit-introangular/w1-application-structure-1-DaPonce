@@ -11,21 +11,30 @@ import { Observable } from 'rxjs';
 export class ProjectsListComponent implements OnInit {
 
   projects: Project[];
-  public projects$: Observable<Project[]> = null;
   constructor(private projectService: ProjectsService) { }
 
   ngOnInit() {
-    this.projects$ = this.projectService.getProjects$();
+    this.loadAllData();
     // this.projectService.getProjects$();
   }
 
   public onSearch(nameFilter: string) {
-    this.projects = this.projectService.getProjectsByName(nameFilter);
+    this.projectService.getProjectsByName$(nameFilter).subscribe(p => {
+      console.log(p);
+      this.projects = p;
+    });
   }
 
   public onDelete(id: number) {
-    this.projectService.deleteProject(id);
-    this.projects = this.projectService.getProjects;
-    // this.projects = [...this.projectService.getProjects()];
+    this.projectService.deleteProject$(id).subscribe(p =>
+      this.loadAllData()
+    );
+  }
+
+  private loadAllData() {
+    this.projectService.getProjects$().subscribe(d => {
+      console.log(d);
+      this.projects = d;
+    });
   }
 }

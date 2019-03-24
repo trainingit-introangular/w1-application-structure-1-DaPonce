@@ -3,7 +3,7 @@ import { environment } from 'src/environments/environment';
 import { Project } from './dashboard/models/project.model';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { map, tap, share } from 'rxjs/operators'
+import { map, tap, share, filter } from 'rxjs/operators'
 @Injectable({
   providedIn: 'root'
 })
@@ -16,51 +16,41 @@ export class ProjectsService {
   public getProjects = environment.projects;
 
   public getProjects$(): Observable<Project[]> {
-    this.projects$ = this.httpClient.get(this.API_URL).pipe(tap(p => console.log(p)), map(this.transformData));
-    return this.projects$;
+    return this.httpClient.get<Project[]>(this.API_URL);
   }
 
-  public getProjectsByName(nameFilter: string): Project[] {
+  public getProjectsByName$(nameFilter: string): Observable<Project[]> {
     if (nameFilter !== '') {
-      return environment.projects.filter(p => p.name.toUpperCase() === nameFilter.toUpperCase());
+      return this.httpClient.get<Project[]>(this.API_URL).pipe(
+        map(ps => ps.filter(p => p.name === nameFilter))
+      );
+      // return environment.projects.filter(p => p.name.toUpperCase() === nameFilter.toUpperCase());
     } else {
-      // return this.getProjects;
       return null;
     }
   }
 
-  public getProjectById(id: number): Project {
-    return environment.projects.filter(p => p.id == id)[0];
+  public getProjectById$(id: number): Observable<Project> {
+    return this.httpClient.get<Project>(this.API_URL + '/' + id);
   }
 
-  public addProject(name: string) {
-    let newProject: Project;
-    newProject = {
-      id: environment.projects.length,
-      name
-    };
-    this.httpClient.post(this.API_URL, newProject).subscribe();
-    environment.projects.push(newProject);
+  public createProject$(project: Project) {
+    return this.httpClient.post(this.API_URL, project);
   }
 
-  public deleteProject(id: number) {
-    let index: number;
-    index = environment.projects.findIndex(p => p.id == id);
-    if (index !== -1) {
-      environment.projects.splice(index, 1);
-    }
-    this.httpClient.delete(this.API_URL).subscribe();
+  public deleteProject$(id: number) {
+    return this.httpClient.delete(this.API_URL + '/' + id);
   }
 
   public updateProject(id: number, newName: string) {
     environment.projects.filter(p => p.id == id)[0].name = newName;
   }
 
-  private transformData(currentProjects) {
-    const current: Project[] = currentProjects.map(item => ({
-      id: item.id,
-      name: item.name
-    }));
-    return current;
-  }
+  // private transformData(currentProjects) {
+  //   const current: Project[] = currentProjects.map(item => ({
+  //     id: item.id,
+  //     name: item.name
+  //   }));
+  //   return current;
+  // }
 }

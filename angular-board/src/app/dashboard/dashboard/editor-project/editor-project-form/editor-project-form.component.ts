@@ -1,4 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Project } from 'src/app/dashboard/models/project.model';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-editor-project-form',
@@ -7,15 +9,13 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 })
 export class EditorProjectFormComponent implements OnInit {
 
-  @Input() originalName: string;
-  @Input() id: number;
+  @Input() project: Project;
   @Output() update = new EventEmitter<string>();
   @Output() cancel = new EventEmitter<boolean>();
   public newName: string;
   constructor() { }
 
   ngOnInit() {
-    this.newName = this.originalName;
   }
 
 }

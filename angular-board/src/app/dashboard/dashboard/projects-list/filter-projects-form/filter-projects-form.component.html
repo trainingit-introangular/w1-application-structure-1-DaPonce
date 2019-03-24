@@ -5,9 +5,9 @@
 </form>
 
 <!-- <h4>Showing <mark class="counterClass">{{ (projects$ | async)?.length }}</mark> projects </h4> -->
-<ul *ngIf="(projects$ | async)?.length>0;">
-  <li *ngFor="let project of projects$ | async ">
-    <h5><a [routerLink]="['./', project.id]" routerLinkActive="router-link-active"><span>{{project.name | uppercase}}</span></a></h5>
-    <button class="secondary" (click)="delete.emit(project.id)">Delete</button>
+<ul *ngIf="projects?.length>0;">
+  <li *ngFor="let project of projects">
+    <h5><a [routerLink]="['./', project._id]" routerLinkActive="router-link-active"><span>{{project.name}}</span></a></h5>
+    <button class="secondary" (click)="delete.emit(project._id)">Delete</button>
   </li>
 </ul>

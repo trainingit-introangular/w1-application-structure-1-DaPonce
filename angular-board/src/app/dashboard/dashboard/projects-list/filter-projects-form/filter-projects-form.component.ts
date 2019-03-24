@@ -11,7 +11,7 @@ export class FilterProjectsFormComponent implements OnInit {
 
   public name: string;
 
-  @Input() public projects$: Observable<Project[]>;
+  @Input() public projects: Project[];
   @Output() delete = new EventEmitter<number>();
   @Output() public search = new EventEmitter<string>();
   constructor() { }

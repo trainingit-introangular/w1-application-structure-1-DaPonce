@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectsService } from 'src/app/projects.service';
 import { Router } from '@angular/router';
+import { Project } from '../../models/project.model';
 
 @Component({
   selector: 'app-new-project',
@@ -13,8 +14,17 @@ export class NewProjectComponent implements OnInit {
   ngOnInit() {}
 
   public onAdd(nameProject: string) {
-    this.projectService.addProject(nameProject);
-    this.router.navigate(['dashboard']);
+    let nProject: Project;
+    // this.projectService.addProject(nameProject);
+    nProject = {
+      name: nameProject,
+      _id: 0,
+    };
+
+    this.projectService.createProject$(nProject).subscribe(d => {
+      console.log(d);
+      this.router.navigate(['dashboard']);
+    });
   }
 
   public onCancel(b: boolean) {
