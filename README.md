@@ -7,7 +7,7 @@ Práctica para el sprint de la quinta semana
 
 ## Tareas
 
-[ ] refactor forms using ReactiveForms
+[x] refactor forms using ReactiveForms
 
 [x] use an interceptor to audit urls called by http
 
