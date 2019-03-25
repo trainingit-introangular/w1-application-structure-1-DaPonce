@@ -1,7 +1,7 @@
-<form>
+<form [formGroup]="formGroup">
   <label for="name">Name</label>
-  <input name="name" type="text" placeholder="Project name" [(ngModel)]="name"/>
-  <input value="Search" type="submit" class="primary" (click)="search.emit(name)" />
+  <input name="name" type="text" placeholder="Project name" formControlName="nameFilter"/>
+  <input value="Search" type="submit" class="primary" (click)="search.emit(formGroup.value.nameFilter)" />
 </form>
 
 <!-- <h4>Showing <mark class="counterClass">{{ (projects$ | async)?.length }}</mark> projects </h4> -->

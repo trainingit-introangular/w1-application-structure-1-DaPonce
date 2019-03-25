@@ -2,13 +2,13 @@
   New project
 </h3>
 
-<form>
+<form [formGroup]="formGroup">
   <fieldset>
     <section>
       <label for="name">Name</label>
-      <input name="name" type="text" [(ngModel)]="newName" placeholder="project name" />
+      <input name="name" type="text" formControlName="name" placeholder="project name" />
     </section>
   </fieldset>
-  <input value="Save" type="submit" class="primary" (click)="add.emit(newName)" />
+  <input value="Save" type="submit" class="primary" (click)="add.emit(formGroup.value.name)" [disabled]="formGroup.invalid" />
   <input value="Cancel" type="reset" class="inverse" (click)="cancel.emit(true)" />
 </form>

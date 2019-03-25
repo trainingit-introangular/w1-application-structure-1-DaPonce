@@ -9,9 +9,8 @@ import { Observable } from 'rxjs';
   styles: []
 })
 export class ProjectsListComponent implements OnInit {
-
   projects: Project[];
-  constructor(private projectService: ProjectsService) { }
+  constructor(private projectService: ProjectsService) {}
 
   ngOnInit() {
     this.loadAllData();
@@ -19,16 +18,18 @@ export class ProjectsListComponent implements OnInit {
   }
 
   public onSearch(nameFilter: string) {
-    this.projectService.getProjectsByName$(nameFilter).subscribe(p => {
-      console.log(p);
-      this.projects = p;
-    });
+    if (nameFilter) {
+      this.projectService.getProjectsByName$(nameFilter).subscribe(p => {
+        console.log(p);
+        this.projects = p;
+      });
+    } else {
+      this.loadAllData();
+    }
   }
 
   public onDelete(id: number) {
-    this.projectService.deleteProject$(id).subscribe(p =>
-      this.loadAllData()
-    );
+    this.projectService.deleteProject$(id).subscribe(p => this.loadAllData());
   }
 
   private loadAllData() {

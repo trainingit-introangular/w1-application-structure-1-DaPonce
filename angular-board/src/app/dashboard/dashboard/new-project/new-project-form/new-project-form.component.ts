@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-new-project-form',
@@ -9,7 +10,18 @@ export class NewProjectFormComponent implements OnInit {
   public newName: string;
   @Output() add = new EventEmitter<string>();
   @Output() cancel = new EventEmitter<boolean>();
-  constructor() {}
+
+  public formGroup: FormGroup;
+
+  constructor(private formBuilder: FormBuilder) {
+    this.buildForm();
+  }
 
   ngOnInit() {}
+
+  private buildForm() {
+    this.formGroup = this.formBuilder.group({
+      name: ['', Validators.required]
+    });
+  }
 }

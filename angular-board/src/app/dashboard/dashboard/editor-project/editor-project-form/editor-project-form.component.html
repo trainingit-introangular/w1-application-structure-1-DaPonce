@@ -3,14 +3,14 @@
   {{ project?.name }}
 </h3>
 
-<form>
+<form [formGroup]="formGroup">
   <fieldset>
     <legend>Edit project</legend>
     <section>
       <label for="name">Name</label>
-      <input name="name" type="text" [(ngModel)]="newName" placeholder="hola" />
+      <input name="name" type="text" formControlName="name" placeholder="nuevo nombre" />
     </section>
   </fieldset>
-  <input value="Edit" type="submit" class="primary" (click)="update.emit(newName)" />
+  <input value="Edit" type="submit" class="primary" (click)="update.emit(formGroup.value.name)" [disabled]="formGroup.invalid" />
   <input value="Cancel" type="reset" class="inverse" (click)="cancel.emit(true)" />
 </form>

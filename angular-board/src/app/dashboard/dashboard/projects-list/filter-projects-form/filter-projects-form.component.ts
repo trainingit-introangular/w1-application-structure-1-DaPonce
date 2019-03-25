@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Project } from 'src/app/dashboard/models/project.model';
-import { Observable } from 'rxjs';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-filter-projects-form',
@@ -8,15 +8,22 @@ import { Observable } from 'rxjs';
   styles: []
 })
 export class FilterProjectsFormComponent implements OnInit {
-
   public name: string;
 
   @Input() public projects: Project[];
   @Output() delete = new EventEmitter<number>();
   @Output() public search = new EventEmitter<string>();
-  constructor() { }
+  public formGroup: FormGroup;
 
-  ngOnInit() {
+  constructor(private formBuilder: FormBuilder) {
+    this.buildForm();
   }
 
+  ngOnInit() {}
+
+  private buildForm() {
+    this.formGroup = this.formBuilder.group({
+      nameFilter: ['', Validators.required]
+    });
+  }
 }
